@@ -42,13 +42,13 @@ INSERT INTO entrada_saida (tipo_evento, qtd_pessoas) VALUES
 
 INSERT INTO filas (caixa_num, sensor1, sensor2, sensor3) VALUES
 (1, 1, 0, 0),
-(1, 1, 1, 0), 
-(1, 1, 1, 1); 
+(2, 1, 1, 0), 
+(4, 1, 1, 1); 
 
 INSERT INTO alertas (caixa_num, statuss) VALUES
 (1, 'leve'),
-(1, 'medio'), 
-(1, 'elevado'); 
+(2, 'medio'), 
+(4, 'elevado'); 
 
 SELECT * FROM supermercado;
 SELECT * FROM entrada_saida;
