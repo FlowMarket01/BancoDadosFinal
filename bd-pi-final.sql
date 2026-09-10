@@ -9,10 +9,10 @@ CREATE TABLE supermercado(
 
 CREATE TABLE entrada_saida(
 	id_saida_entrada INT PRIMARY KEY AUTO_INCREMENT,
-    sensor_entrada TINYINT(1),
-    sensor_saida TINYINT(1),
+    tipo_evento VARCHAR(10),
     qtd_pessoas INT,
-    data_hora DATETIME DEFAULT NOW()
+    data_hora DATETIME DEFAULT NOW(),
+    CONSTRAINT chkTipo_evento CHECK(tipo_evento IN('entrada', 'saida'))
 );
 
 CREATE TABLE filas(
@@ -35,17 +35,20 @@ CREATE TABLE alertas(
 INSERT INTO supermercado (nome, cnpj) VALUES 
 ('SP Tech Supermercados - Unidade Centro', '12345678000195');
 
-INSERT INTO entrada_saida (sensor_entrada, sensor_saida, qtd_pessoas) VALUES 
-(1, 0, 1),
-(0, 1, 1);
+INSERT INTO entrada_saida (tipo_evento, qtd_pessoas) VALUES
+('entrada', 1), 
+('entrada', 1), 
+('saida', 1);   
 
-INSERT INTO filas (caixa_num, sensor1, sensor2, sensor3) VALUES 
+INSERT INTO filas (caixa_num, sensor1, sensor2, sensor3) VALUES
 (1, 1, 0, 0),
-(2, 1, 1, 1);
+(1, 1, 1, 0), 
+(1, 1, 1, 1); 
 
-INSERT INTO alertas (caixa_num, statuss) VALUES 
+INSERT INTO alertas (caixa_num, statuss) VALUES
 (1, 'leve'),
-(2, 'elevado');
+(1, 'medio'), 
+(1, 'elevado'); 
 
 SELECT * FROM supermercado;
 SELECT * FROM entrada_saida;
