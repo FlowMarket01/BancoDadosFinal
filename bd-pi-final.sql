@@ -7,12 +7,17 @@ CREATE TABLE supermercado(
     cnpj CHAR(14)
 );
 
-CREATE TABLE entrada_saida(
-	id_saida_entrada INT PRIMARY KEY AUTO_INCREMENT,
-    tipo_evento VARCHAR(10),
+CREATE TABLE entrada(
+	id_entrada INT PRIMARY KEY AUTO_INCREMENT,
     qtd_pessoas INT,
-    data_hora DATETIME DEFAULT NOW(),
-    CONSTRAINT chkTipo_evento CHECK(tipo_evento IN('entrada', 'saida'))
+    data_hora DATETIME DEFAULT NOW()
+);
+
+
+CREATE TABLE saida(
+	id_entrada INT PRIMARY KEY AUTO_INCREMENT,
+    qtd_pessoas INT,
+    data_hora DATETIME DEFAULT NOW()
 );
 
 CREATE TABLE filas(
@@ -32,25 +37,9 @@ CREATE TABLE alertas(
     CONSTRAINT chkStatus CHECK(statuss IN('leve', 'medio', 'elevado'))
 );
 
-INSERT INTO supermercado (nome, cnpj) VALUES 
-('SP Tech Supermercados - Unidade Centro', '12345678000195');
-
-INSERT INTO entrada_saida (tipo_evento, qtd_pessoas) VALUES
-('entrada', 1), 
-('entrada', 1), 
-('saida', 1);   
-
-INSERT INTO filas (caixa_num, sensor1, sensor2, sensor3) VALUES
-(1, 1, 0, 0),
-(2, 1, 1, 0), 
-(4, 1, 1, 1); 
-
-INSERT INTO alertas (caixa_num, statuss) VALUES
-(1, 'leve'),
-(2, 'medio'), 
-(4, 'elevado'); 
 
 SELECT * FROM supermercado;
-SELECT * FROM entrada_saida;
+SELECT * FROM entrada;
+SELECT * FROM saida;
 SELECT * FROM filas;
 SELECT * FROM alertas;
